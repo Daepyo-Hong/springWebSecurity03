@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:insert="~{layout/default::head}"/>
+</head>
+<body>
+<th:block th:insert="layout/default::header"/>
+<main>
+	<h1>메인</h1>
+	<div class="wrap view-size">
+		게시글페이지
+		<table>
+			<tr>
+				<td>글번호</td>
+				<td>제목</td>
+				<td>조회수</td>
+				<td>작성자</td>
+				<td>작성일</td>
+			</tr>
+			<tr th:each="dto : ${list}">
+				<td th:text="${dto.bno}">글번호</td>
+				<td>[[${dto.title}]]</td>
+				<td th:text="${dto.readCount}">조회수</td>
+				<td >[[${dto.writer}]]</td>
+				<td >
+					<span th:if="${dto.updatedDate.toLocalDate() ne dto.today}"
+							th:text="${dto.updatedDate.toLocalDate()}">날짜만 출력</span>
+					<span th:if="${dto.updatedDate.toLocalDate() eq dto.today}"
+							th:text="${#temporals.format(dto.updatedDate,'HH시 mm분 ss초')}">시간만 출력</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+</main>
+</body>
+</html>
