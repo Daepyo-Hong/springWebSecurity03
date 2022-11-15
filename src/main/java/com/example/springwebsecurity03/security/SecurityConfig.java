@@ -1,6 +1,7 @@
 package com.example.springwebsecurity03.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +21,8 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorize -> authorize
                         .antMatchers("/css/**").permitAll()
+                        .antMatchers(HttpMethod.POST,"/boards").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/boards/write").hasRole("USER")
                         .antMatchers("/","/boards/**").permitAll()
                         .anyRequest().authenticated()
                 )

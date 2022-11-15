@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<th:block th:insert="~{layout/default::head}"/>
+</head>
+<body>
+<th:block th:insert="layout/default::header"/>
+<main >
+	<h1>메인영역</h1>
+	<div class="wrap view-size">
+		<table border="1">
+			<tr>
+				<td>글번호</td>
+				<td th:text="${detail.bno}"></td>
+			</tr>
+			<tr>
+				<td>작성일</td>
+				<td th:text="${detail.createdDate}"></td>
+			</tr>
+			<tr>
+
+				<td>수정일</td>
+				<td th:text="${detail.updatedDate}"></td>
+			</tr>
+			<tr>
+				<td>조회수</td>
+				<td th:text="${detail.readCount}"></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td th:text="${detail.writer}"></td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td th:text="${detail.title}"></td>
+			</tr>
+			<tr>
+				<td >내용</td>
+				<td th:text="${detail.content}"></td>
+			</tr>
+		</table>
+	</div>
+</main>
+
+</body>
+</html>

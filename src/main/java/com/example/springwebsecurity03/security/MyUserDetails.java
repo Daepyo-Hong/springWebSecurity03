@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Getter
 public class MyUserDetails extends User {
     //필요한 데이터 커스터마이징 가능, principal 요소
+    private long mno;   //pk
     private String email;
     private String name;
     private String nickName;
@@ -24,7 +25,7 @@ public class MyUserDetails extends User {
                 .collect(Collectors.toSet()));
         //stream을 이용하면 안쪽 구성요소를 바꿀 수 있어요.
         //entity.getRoles():Set<MyRole> -> Collection<SimpleGrantedAuthority>
-
+        mno=entity.getMno();        //pk
         email=entity.getEmail();    //이메일
         name=entity.getName();      //이름
         nickName= entity.getNickName();//닉네임
