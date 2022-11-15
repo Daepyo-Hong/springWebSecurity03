@@ -29,15 +29,24 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td th:text="${detail.writer}"></td>
+				<td th:text="${detail.writerNickName}"></td>
 			</tr>
 			<tr>
 				<td>제목</td>
 				<td th:text="${detail.title}"></td>
 			</tr>
+
 			<tr>
 				<td >내용</td>
 				<td th:text="${detail.content}"></td>
+			</tr>
+			<tr sec:authorize="isAuthenticated()">
+				<td colspan="2" th:if="${detail.writerEmail eq #authentication.name or #authorization.expression('hasRole(''ADMIN'')')}">
+					<form th:action="|/boards/${detail.bno}|" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<button>삭제</button>
+					</form>
+				</td>
 			</tr>
 		</table>
 	</div>

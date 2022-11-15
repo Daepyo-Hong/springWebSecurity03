@@ -9,4 +9,6 @@ public interface BoardService {
     void sendDetail(long bno, Model model);
 
     void save(BoardSaveDTO dto);
+
+    void delete(long bno);
 }

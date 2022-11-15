@@ -25,6 +25,19 @@ class SpringWebSecurity03ApplicationTests {
     PasswordEncoder encoder;
 
     @Test
+    void 관리자() {
+        String email = "admin@test.com";
+        mRepository.save(MemberEntity.builder()
+                .email(email)
+                .name("관리자")
+                .pass(encoder.encode("1234"))
+                .nickName("admin")
+                .build().addRole(MyRole.GUEST).addRole(MyRole.USER).addRole(MyRole.ADMIN));
+
+    }
+
+
+    @Test
     void 회원가입() {
 
         IntStream.rangeClosed(1, 20).forEach(i -> {

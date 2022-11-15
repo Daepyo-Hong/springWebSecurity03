@@ -87,4 +87,10 @@ public class BoardServiceProc implements BoardService {
                 .build();
         repository.save(entity);
     }
+
+    @Override
+    public void delete(long bno) {
+        //bno : pk 이므로 !
+        repository.deleteById(bno);
+    }
 }

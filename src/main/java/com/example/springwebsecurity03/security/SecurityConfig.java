@@ -21,7 +21,9 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorize -> authorize
                         .antMatchers("/css/**").permitAll()
-                        .antMatchers(HttpMethod.POST,"/boards").hasRole("USER")
+                        .antMatchers(HttpMethod.PUT,"/boards/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE,"/boards/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST,"/boards","/boards/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET,"/boards/write").hasRole("USER")
                         .antMatchers("/","/boards/**").permitAll()
                         .anyRequest().authenticated()

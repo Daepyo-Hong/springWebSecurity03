@@ -15,7 +15,9 @@ public class BoardDetailDTO {
     private String title;
     private String content;
     private int readCount;
-    private String writer;
+    private long writerMno;
+    private String writerEmail;
+    private String writerNickName;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
@@ -25,7 +27,9 @@ public class BoardDetailDTO {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.readCount = entity.getReadCount();
-        this.writer = entity.getMember().getEmail();    //작성자는 이메일 정보로 대체(닉네임 쓰는게 보통일듯)
+        this.writerMno = entity.getMember().getMno();
+        this.writerEmail = entity.getMember().getEmail();    //작성자는 이메일 정보로 대체(닉네임 쓰는게 보통일듯)
+        this.writerNickName = entity.getMember().getNickName();
         this.createdDate = entity.getCreatedDate();
         this.updatedDate = entity.getUpdatedDate();
     }
