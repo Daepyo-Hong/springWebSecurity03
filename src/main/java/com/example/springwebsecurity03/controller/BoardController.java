@@ -2,6 +2,7 @@ package com.example.springwebsecurity03.controller;
 
 import com.example.springwebsecurity03.domain.dto.BoardListDTO;
 import com.example.springwebsecurity03.domain.dto.BoardSaveDTO;
+import com.example.springwebsecurity03.domain.dto.BoardUpdateDTO;
 import com.example.springwebsecurity03.security.MyUserDetails;
 import com.example.springwebsecurity03.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class BoardController {
         return "board/list";
     }
 
+    //디테일 페이지
     @GetMapping("/boards/{bno}")
     public String detail(@PathVariable long bno,Model model){
         service.sendDetail(bno,model);
@@ -52,5 +54,14 @@ public class BoardController {
     public String delete(@PathVariable long bno){
         service.delete(bno);
         return "redirect:/boards";
+    }
+    @PutMapping("/boards/{bno}")                //Setter 있어야함.
+    public String update(@PathVariable long bno, BoardUpdateDTO dto ){
+        //System.out.println(">>>>>>>>>>>"+bno+"수정처리"+dto);
+        //service.update(bno, dto); //이거도 되는데 다른 방법으로 만들어본다 함!
+
+        service.updateProc(bno, dto);
+
+        return "redirect:/boards/{bno}";
     }
 }

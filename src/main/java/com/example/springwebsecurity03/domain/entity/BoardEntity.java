@@ -1,15 +1,14 @@
 package com.example.springwebsecurity03.domain.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.springwebsecurity03.domain.dto.BoardUpdateDTO;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 
+//@Setter
 @Getter
 @DynamicUpdate      //수정할 때 쿼리가 수정된 데이터만 들어가는 것
 @Builder
@@ -37,4 +36,10 @@ public class BoardEntity extends BaseDateTimeColumn{
     // DETACH : 자식엔티티에 영향주지않는 readOnly역할
     //fetch 디폴트 eager(즉시로딩) : 1개니깐 ! collection 디폴트 : LAZY
     private MemberEntity member;    //작성자 정보
+
+    public BoardEntity update(BoardUpdateDTO dto) {
+        title=dto.getTitle();
+        content=dto.getContent();
+        return this;
+    }
 }

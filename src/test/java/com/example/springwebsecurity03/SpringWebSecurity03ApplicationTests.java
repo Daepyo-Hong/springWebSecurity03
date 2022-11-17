@@ -1,9 +1,6 @@
 package com.example.springwebsecurity03;
 
-import com.example.springwebsecurity03.domain.entity.BoardEntity;
-import com.example.springwebsecurity03.domain.entity.BoardEntityRepository;
-import com.example.springwebsecurity03.domain.entity.MemberEntity;
-import com.example.springwebsecurity03.domain.entity.MemberEntityRepository;
+import com.example.springwebsecurity03.domain.entity.*;
 import com.example.springwebsecurity03.security.MyRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +19,22 @@ class SpringWebSecurity03ApplicationTests {
     MemberEntityRepository mRepository;
 
     @Autowired
+    ReplyEntityRepository rrepository;
+    @Autowired
     PasswordEncoder encoder;
+
+    @Test
+    void 댓글저장(){
+        long bno= 100L;   //댓글대상
+        long mno= 1L;    //작성자pk
+        ReplyEntity entity=ReplyEntity.builder()
+                .text(bno+"게시글 댓글 2")
+                .board(BoardEntity.builder().bno(bno).build())//게시글정보
+                .member(MemberEntity.builder().mno(mno).build())
+                .build();
+        rrepository.save(entity);
+    }
+
 
     @Test
     void 관리자() {

@@ -20,8 +20,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .antMatchers("/css/**").permitAll()
-                        .antMatchers(HttpMethod.PUT,"/boards/**").hasRole("USER")
+                        .antMatchers("/css/**","/js/**").permitAll()
+                        //.antMatchers(HttpMethod.PUT,"/boards/**").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE,"/boards/**").hasRole("USER")
                         .antMatchers(HttpMethod.POST,"/boards","/boards/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET,"/boards/write").hasRole("USER")
